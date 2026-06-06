@@ -359,7 +359,7 @@
                 </div>
 
                 <div class="lg:col-span-7 bg-brand-light p-8 rounded-2xl border border-slate-200">
-                    <form onsubmit="event.preventDefault(); document.getElementById('form-alert').classList.remove('hidden');">
+                    <form onsubmit="sendToWhatsApp(event)">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
                             <div>
                                 <label class="block text-xs font-bold mb-2">اسم العميل / الشركة:</label>
@@ -385,6 +385,36 @@
             </div>
         </div>
     </section>
+<script>
+function sendToWhatsApp(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('client-name').value.trim();
+    const phone = document.getElementById('client-phone').value.trim();
+    const details = document.getElementById('form-message').value.trim();
+
+    const message =
+`طلب عرض سعر جديد
+
+اسم العميل / الشركة:
+${name}
+
+رقم الهاتف:
+${phone}
+
+تفاصيل الطلب:
+${details}`;
+
+    const whatsappNumber = "201025776620"; // حط رقمكم هنا
+
+    const whatsappURL =
+        `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, '_blank');
+
+    document.getElementById('form-alert').classList.remove('hidden');
+}
+</script>
 
     <!-- الفوتر وحقوق الملكية لشركة Strong Metal وتوقيع المطور الاحترافي -->
     <footer class="border-t border-slate-200 bg-white shadow-inner relative overflow-hidden">
