@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strong Metal | سترونج ميتال لتوريدات الإستانلس ستيل</title>
+    <script>
+        const __firebase_config = JSON.stringify({
+            apiKey: "AIzaSyAldH-U7ndtG-iFkrP075K3IRAIYmFJoKM",
+            authDomain: "test-bcf62.firebaseapp.com",
+            databaseURL: "https://test-bcf62-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "test-bcf62",
+            storageBucket: "test-bcf62.firebasestorage.app",
+            messagingSenderId: "948138345012",
+            appId: "1:948138345012:web:7331a50db4941e8ae48061",
+            measurementId: "G-VY48837FYE"
+        });
+
+        const __app_id = "strong-metal-app";
+    </script>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0B1E36',     /* الأزرق الداكن الملكي المستوحى من اللوجو */
+                            blue: '#15305B',     /* درجة الأزرق المتوسطة للبنرات */
+                            silver: '#8A95A5',   /* الرمادي المعدني */
+                            lightSilver: '#EAEFF5', /* خلفية فضية فاتحة جداً */
+                            accent: '#1D4ED8',   /* أزرق تفاعلي */
+                            light: '#F8FAFC'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B1E36; }
+        ::-webkit-scrollbar-thumb { background: #8A95A5; border-radius: 4px; }
+        .metallic-gradient {
+            background: linear-gradient(135deg, #0B1E36 0%, #15305B 100%);
+        }
+        @media print {
+            body * { visibility: hidden; }
+            #print-area, #print-area * { visibility: visible; }
+            #print-area { position: absolute; left: 0; top: 0; width: 100%; }
+        }
+    </style>
+</head>
+<body class="font-sans bg-brand-light text-slate-800 antialiased overflow-x-hidden" onload="initApp()">
+
+    <!-- شريط معلومات التواصل العلوي -->
+    <div class="bg-brand-dark text-slate-300 text-xs md:text-sm py-2 px-4 border-b border-slate-800 hidden sm:block">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-silver"></i> <span class="dyn-phone">01015712392</span></span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-silver"></i> <span class="dyn-email">sales@strongmetal.com</span></span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-silver"></i> القاهرة، مصر</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleAdminPanel()" class="bg-brand-blue hover:bg-slate-700 text-white font-bold px-3 py-1 rounded border border-slate-600 text-xs transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-lock text-brand-silver"></i> لوحة التحكم الإدارية
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- الهيدر وقائمة التصفح -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                <!-- الشعار الرسمي المدمج Strong Metal -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img src="WhatsApp Image 2026-06-01 at 2.18.31 PM (1).jpeg" alt="Strong Metal Logo" id="main-logo-img" class="h-16 w-16 object-contain rounded-lg border border-slate-200" onerror="this.src='https://placehold.co/150x150/0B1E36/FFFFFF?text=SM'">
+                    <div>
+                        <span class="text-2xl font-black tracking-wider text-brand-dark uppercase block leading-none">STRONG METAL</span>
+                        <span class="text-[11px] font-bold text-brand-silver tracking-widest block mt-1.5">STAINLESS STEEL SOLUTIONS</span>
+                    </div>
+                </div>
+
+                <!-- قائمة الكمبيوتر -->
+                <nav class="hidden md:flex items-center gap-8 font-bold text-brand-dark">
+                    <a href="#home" class="hover:text-brand-silver transition-colors">الرئيسية</a>
+                    <a href="#about" class="hover:text-brand-silver transition-colors">عن الشركة</a>
+                    <a href="#products" class="hover:text-brand-silver transition-colors">كتالوج المنتجات</a>
+                    <a href="#calculator" class="hover:text-brand-silver transition-colors text-blue-700">حاسبة الأوزان</a>
+                    <a href="#contact" class="hover:text-brand-silver transition-colors">اتصل بنا</a>
+                </nav>
+
+                <!-- زر طلب سريع والموبايل -->
+                <div class="flex items-center gap-4">
+                    <a href="#contact" class="hidden lg:inline-block bg-brand-dark text-white px-5 py-3 rounded-lg font-bold text-sm shadow-md hover:bg-brand-blue transition-all">
+                        <i class="fa-solid fa-file-invoice-dollar ml-2"></i>طلب تسعير
+                    </a>
+                    <!-- تعديل زر المنيو وربطه بدالة التفعيل الفوري -->
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenuOpen()" class="md:hidden text-brand-dark p-2 rounded-lg bg-slate-100 transition-all hover:bg-slate-200">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- قائمة الموبايل المنسدلة -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-lg px-4 py-6">
+            <div class="flex flex-col gap-4 text-center font-bold text-brand-dark">
+                <a href="#home" class="py-2 hover:bg-slate-50 rounded-lg" onclick="toggleMobileMenu()">الرئيسية</a>
+                <a href="#about" class="py-2 hover:bg-slate-50 rounded-lg" onclick="toggleMobileMenu()">عن الشركة</a>
+                <a href="#products" class="py-2 hover:bg-slate-50 rounded-lg" onclick="toggleMobileMenu()">منتجاتنا</a>
+                <a href="#calculator" class="py-2 hover:bg-slate-50 rounded-lg text-blue-700" onclick="toggleMobileMenu()">حاسبة الأوزان</a>
+                <a href="#contact" class="py-2 hover:bg-slate-50 rounded-lg" onclick="toggleMobileMenu()">اتصل بنا</a>
+                <button onclick="toggleAdminPanel(); toggleMobileMenu();" class="bg-slate-800 text-white py-2 rounded-lg text-xs"><i class="fa-solid fa-lock ml-1"></i>لوحة التحكم الإدارية</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- واجهة البنر الرئيسي (Hero Section) -->
+    <section id="home" class="relative min-h-[75vh] flex items-center bg-brand-dark text-white overflow-hidden">
+        <div id="hero-bg-div" class="absolute inset-0 opacity-25 mix-blend-luminosity bg-center bg-cover" style="background-image: url('WhatsApp Image 2026-06-01 at 2.18.31 PM.jpg');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/90 to-transparent"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 text-right">
+                    <span class="inline-block bg-white/10 text-brand-silver border border-white/20 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
+                        <i class="fa-solid fa-industry ml-2"></i>حلول الاستنلس ستيل بجودة تفرق
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                        مواصير - قطاعات - <span class="text-brand-silver">مستلزمات صناعية</span> بأعلى معايير الجودة
+                    </h1>
+                    <p class="text-lg text-slate-300 mb-8 max-w-xl leading-relaxed">
+                        خامات عالية الجودة، مقاومة تامة للصدأ والتآكل، مناسبة لكل الصناعات والمشاريع والشركات والمصانع الكبرى في مصر.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#products" class="bg-white text-brand-dark hover:bg-brand-lightSilver px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition-all flex items-center gap-3">
+                            تصفح كتالوج المنتجات <i class="fa-solid fa-arrow-left"></i>
+                        </a>
+                        <a href="#" id="dyn-whatsapp-btn" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all flex items-center gap-3 shadow-lg">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i> راسلنا واتساب مباشر
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 hidden lg:block">
+                    <!-- عرض البانر المرفق بشكل بارز داخل كارت فخم متناسق بالواجهة -->
+                    <img src="WhatsApp Image 2026-06-01 at 2.18.31 PM.jpg" id="hero-side-img" alt="Strong Metal Banner View" class="rounded-2xl border border-slate-700 shadow-2xl object-cover w-full h-80" onerror="this.src='https://placehold.co/800x400/0B1E36/FFFFFF?text=Strong+Metal'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- شريط الخصائص الأساسية من البانر -->
+    <section class="relative z-20 -mt-10 max-w-6xl mx-auto px-4">
+        <div class="bg-white rounded-xl shadow-xl grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x md:divide-x-reverse divide-slate-100 overflow-hidden border border-slate-200">
+            <div class="p-6 flex items-center gap-4 justify-center">
+                <div class="text-brand-dark text-3xl"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                    <h4 class="font-bold text-brand-dark text-base">خامات عالية الجودة</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">مستوردة ومصنعة بأعلى دقة</p>
+                </div>
+            </div>
+            <div class="p-6 flex items-center gap-4 justify-center">
+                <div class="text-brand-dark text-3xl"><i class="fa-solid fa-droplet-slash"></i></div>
+                <div>
+                    <h4 class="font-bold text-brand-dark text-base">مقاومة للصدأ والتآكل</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">سبائك معتمدة 304 و 316L</p>
+                </div>
+            </div>
+            <div class="p-6 flex items-center gap-4 justify-center">
+                <div class="text-brand-dark text-3xl"><i class="fa-solid fa-gears"></i></div>
+                <div>
+                    <h4 class="font-bold text-brand-dark text-base">مناسب لكل الصناعات</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">مصانع - شركات - مشاريع كبرى</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم عن الشركة -->
+    <section id="about" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-5 relative">
+                    <div class="absolute -bottom-6 -right-6 w-full h-full bg-brand-blue/10 rounded-2xl -z-10"></div>
+                    <img src="WhatsApp Image 2026-06-01 at 2.18.31 PM.jpg" id="about-side-img" alt="About Strong Metal" class="rounded-2xl shadow-xl border-4 border-white object-cover h-[400px] w-full" onerror="this.src='https://placehold.co/800x600/0B1E36/FFFFFF?text=Strong+Metal'">
+                </div>
+                <div class="lg:col-span-7">
+                    <span class="text-brand-blue font-extrabold uppercase tracking-widest block mb-2">من نحن</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-brand-dark mb-6 leading-tight">
+                        شريككم الهندسي المعتمد لتوريدات الاستانلس ستيل ومستلزمات خطوط الإنتاج
+                    </h2>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        نحن شركة <strong class="text-brand-dark font-bold">Strong Metal</strong> نسعى لتوفير جميع متطلبات الشركات والمصانع الكبرى من مواسير وفلانشات ومحابس وقطع الغيار والمستلزمات الصناعية المصنوعة من الفولاذ المقاوم للصدأ بأعلى جودة مطابقة للمواصفات الدولية وشهادات الاعتماد.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-500 text-xl"></i>
+                            <span class="font-bold text-brand-dark text-sm">اعتمادات كاملة وشهادات منشأ</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-emerald-500 text-xl"></i>
+                            <span class="font-bold text-brand-dark text-sm">مخزون ضخم متاح للتسليم الفوري</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- أقسام منتجاتنا والكتالوج التفاعلي المربوط بالـ Admin -->
+    <section id="products" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-silver font-extrabold uppercase tracking-widest block mb-2">كتالوج المنتجات الرسمي</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-brand-dark mb-4">حلول الاستانلس ستيل بجودة تفرق</h2>
+                <p class="text-slate-500">تصفح الأقسام المتاحة، كما يمكنك إدارتها وزيادتها بالكامل من خلال لوحة الإدارة.</p>
+            </div>
+
+            <!-- أزرار تبديل الأقسام الديناميكية -->
+            <div class="flex flex-col gap-6 mb-12">
+                <div id="categories-tabs-container" class="flex flex-wrap justify-center gap-3">
+                    <!-- توليد التابات تلقائياً عبر الجافاسكربت -->
+                </div>
+                <!-- مربع البحث الفوري -->
+                <div class="max-w-md mx-auto w-full relative">
+                    <input type="text" id="product-search" placeholder="ابحث عن مواصفة أو منتج معين هنا..." class="w-full px-5 py-3 pr-12 rounded-xl border border-slate-300 bg-slate-50 focus:outline-none focus:border-brand-dark focus:bg-white transition-all text-sm font-semibold" onkeyup="renderProducts()">
+                    <i class="fa-solid fa-magnifying-glass text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 text-lg"></i>
+                </div>
+            </div>
+
+            <!-- شبكة كروت المنتجات الديناميكية -->
+            <div id="products-grid-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- يتم التوليد والعرض التلقائي هنا -->
+            </div>
+        </div>
+    </section>
+
+    <!-- حاسبة أوزان الإستانلس ستيل التفاعلية المهنية -->
+    <section id="calculator" class="py-24 bg-brand-dark text-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12">
+                <span class="text-brand-silver font-extrabold uppercase tracking-widest block mb-2">الأداة الهندسية المعتمدة</span>
+                <h2 class="text-3xl sm:text-4xl font-black mb-4">حاسبة أوزان منتجات الفولاذ المقاوم للصدأ</h2>
+                <p class="text-slate-300 max-w-xl mx-auto">احسب أوزان المواسير الدائرية أو الألواح والقطاعات المسطحة طبقاً لكثافة درجات السبائك المعتمدة.</p>
+            </div>
+
+            <div class="bg-brand-blue border border-slate-800 rounded-2xl p-6 sm:p-10 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <div class="lg:col-span-7 flex flex-col gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">شكل الخامة الموردة:</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button id="shape-pipe-btn" onclick="setCalcShape('pipe')" class="py-3 px-4 rounded-xl border-2 border-brand-silver bg-brand-dark text-white font-bold flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-circle-notch"></i> مواسير دائرية
+                            </button>
+                            <button id="shape-sheet-btn" onclick="setCalcShape('sheet')" class="py-3 px-4 rounded-xl border border-slate-700 bg-brand-dark/50 text-slate-400 font-bold flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-square-full text-sm"></i> ألواح مسطحة
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="pipe-inputs" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">القطر الخارجي (مم):</label>
+                            <input type="number" id="pipe-od" value="60.3" class="w-full bg-brand-dark border border-slate-700 rounded-lg p-3 text-white focus:outline-none font-mono text-center" oninput="calculateWeight()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">سمك الجدار (مم):</label>
+                            <input type="number" id="pipe-wall" value="3.91" class="w-full bg-brand-dark border border-slate-700 rounded-lg p-3 text-white focus:outline-none font-mono text-center" oninput="calculateWeight()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">الطول (متر):</label>
+                            <input type="number" id="pipe-len" value="6" class="w-full bg-brand-dark border border-slate-700 rounded-lg p-3 text-white focus:outline-none font-mono text-center" oninput="calculateWeight()">
+                        </div>
+                    </div>
+
+                    <div id="sheet-inputs" class="grid grid-cols-1 sm:grid-cols-3 gap-4 hidden">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">السمك (مم):</label>
+                            <input type="number" id="sheet-thick" value="2" class="w-full bg-brand-dark border border-slate-700 rounded-lg p-3 text-white focus:outline-none font-mono text-center" oninput="calculateWeight()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">العرض (متر):</label>
+                            <input type="number" id="sheet-width" value="1.22" class="w-full bg-brand-dark border border-slate-700 rounded-lg p-3 text-white focus:outline-none font-mono text-center" oninput="calculateWeight()">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-300 mb-1">الطول (متر):</label>
+                            <input type="number" id="sheet-len" value="2.44" class="w-full bg-brand-dark border border-slate-700 rounded-lg p-3 text-white focus:outline-none font-mono text-center" oninput="calculateWeight()">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-300 mb-2">رتبة الإستانلس ستيل (الكثافة النوعية):</label>
+                        <select id="steel-density" class="w-full bg-brand-dark border border-slate-700 rounded-lg p-3 text-white focus:outline-none" onchange="calculateWeight()">
+                            <option value="7.93">AISI 304 / 304L (المعيار الصناعي والغذائي)</option>
+                            <option value="7.98">AISI 316 / 316L (المقاومة العالية للأحماض والملوحة)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 bg-brand-dark/60 rounded-xl border border-slate-800 p-6 flex flex-col justify-between text-center">
+                    <div class="my-auto py-6">
+                        <span class="block text-xs font-bold text-brand-silver tracking-widest mb-2">الوزن الإجمالي المحسوب</span>
+                        <div class="text-5xl font-black text-brand-silver font-mono">
+                            <span id="calc-result">33.02</span> <span class="text-lg text-white">كجم</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <button onclick="copyWeightToForm()" class="w-full bg-brand-dark hover:bg-slate-800 text-white py-3 rounded-lg font-bold text-xs border border-slate-700 transition-colors">
+                            إدراج النتيجة بطلب التسعير المباشر
+                        </button>
+                        <button onclick="generatePrintableQuote()" class="w-full bg-brand-blue hover:bg-slate-700 text-brand-silver py-2.5 rounded-lg font-bold text-xs border border-slate-600 transition-colors">
+                            <i class="fa-solid fa-print ml-1.5"></i> تصدير عرض سعر رسمي للطباعة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم اتصل بنا وتلقي الطلبات -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                <div class="lg:col-span-5">
+                    <span class="text-brand-dark font-extrabold uppercase tracking-widest block mb-2">تواصل مبيعات</span>
+                    <h2 class="text-3xl font-black text-brand-dark mb-6">جاهزون لتلبية طلبات التوريد فوراً</h2>
+                    <p class="text-slate-500 mb-8">ارسل لنا المقاسات والجداول المطلوبة وسيقوم ممثلو المبيعات بإعداد الفواتير وعروض الأسعار المعتمدة.</p>
+                    
+                    <div class="flex flex-col gap-6">
+                        <div class="flex items-center gap-4">
+                            <span class="bg-brand-dark text-white p-3.5 rounded-xl"><i class="fa-solid fa-phone"></i></span>
+                            <div>
+                                <h4 class="font-bold text-slate-400 text-xs">اتصال هاتف مبيعات</h4>
+                                <span class="text-lg font-black text-brand-dark dyn-phone">01015712392</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="bg-brand-dark text-white p-3.5 rounded-xl"><i class="fa-solid fa-envelope"></i></span>
+                            <div>
+                                <h4 class="font-bold text-slate-400 text-xs">البريد الإلكتروني للشركة</h4>
+                                <span class="text-lg font-black text-brand-dark dyn-email">sales@strongmetal.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-brand-light p-8 rounded-2xl border border-slate-200">
+                    <form onsubmit="event.preventDefault(); document.getElementById('form-alert').classList.remove('hidden');">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-xs font-bold mb-2">اسم العميل / الشركة:</label>
+                                <input type="text" id="client-name" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-sm" placeholder="مثال: شركة المقاولات الهندسية">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold mb-2">رقم الهاتف:</label>
+                                <input type="text" id="client-phone" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-sm" placeholder="0100000000">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-xs font-bold mb-2">تفاصيل أصناف الإستانلس ستيل والكميات المطلوبة:</label>
+                            <textarea id="form-message" rows="4" required class="w-full px-4 py-3 rounded-lg border border-slate-300 bg-white text-sm" placeholder="أذكر مثلاً: كوع 3 بوصة سمليس 316، الواح 2 مم 304..."></textarea>
+                        </div>
+                        <div id="form-alert" class="hidden bg-emerald-50 border border-emerald-200 text-emerald-800 p-4 rounded-xl text-center font-bold text-sm mb-4">
+                            <i class="fa-solid fa-circle-check ml-2"></i> تم استلام طلبكم، وجاري مراجعته وتجهيز عرض السعر.
+                        </div>
+                        <button type="submit" class="w-full bg-brand-dark hover:bg-brand-blue text-white py-4 rounded-xl font-bold transition-all shadow-md">
+                            <i class="fa-solid fa-paper-plane ml-2"></i> إرسال طلب عرض السعر الرسمي
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر وحقوق الملكية لشركة Strong Metal وتوقيع المطور الاحترافي -->
+    <footer class="border-t border-slate-200 bg-white shadow-inner relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-brand-silver/30 to-transparent"></div>
+        <div class="max-w-7xl mx-auto px-4 pt-10 pb-6 text-center text-sm">
+            <p class="text-slate-800 leading-relaxed font-bold tracking-wide">
+                © 2026 جميع الحقوق محفوظة لشركة
+                <strong class="text-slate-900 border-b-2 border-brand-dark/20 pb-0.5">Strong Metal</strong>
+                لتوريدات الإستانلس ستيل وكل لوازمه والمحابس.
+            </p>
+
+            <a href="https://wa.me/201011918946"
+               target="_blank"
+               class="inline-flex items-center justify-center mt-5 gap-2 text-slate-700 hover:text-slate-900 transition-all text-xs font-semibold bg-slate-50 hover:bg-slate-100 px-5 py-2.5 rounded-full border border-slate-200 shadow-sm hover:shadow">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                تم تطوير الموقع بواسطة <strong>Dev:Saif Mamdouh</strong>
+                للتواصل مع مطور الموقع اضغط هنا 💬
+            </a>
+        </div>
+    </footer>
+
+    <!-- لوحة تحكم الأدمن المدمجة والمحمية برقم سري مع ميزة التزامن السحابي -->
+    <div id="admin-panel" class="fixed inset-y-0 right-0 z-50 w-full max-w-xl bg-white shadow-2xl border-l border-slate-200 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="bg-brand-dark text-white p-6 flex justify-between items-center">
+            <div>
+                <h3 class="text-xl font-black flex items-center gap-2"><i class="fa-solid fa-toolbox text-brand-silver"></i> لوحة التحكم الإدارية</h3>
+                <p class="text-xs text-slate-400 mt-1">تعديل الكتالوج، الأقسام، وبيانات التواصل فوراً</p>
+            </div>
+            <button onclick="toggleAdminPanel()" class="text-white hover:text-red-500 text-2xl transition-colors">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- واجهة إدخال الرقم السري (بوابة الأمان) -->
+        <div id="admin-login-screen" class="p-8 flex-1 flex flex-col justify-center items-center text-center">
+            <div class="bg-brand-lightSilver text-brand-dark p-4 rounded-full text-4xl mb-4 w-20 h-20 flex items-center justify-center border border-slate-300">
+                <i class="fa-solid fa-lock-open animate-bounce"></i>
+            </div>
+            <h4 class="font-extrabold text-brand-dark text-lg mb-2">تسجيل الدخول كمدير للنظام</h4>
+            <p class="text-xs text-slate-500 mb-6 max-w-xs leading-relaxed">أدخل الرقم السري للوحة الإدارة لتعديل المنتجات وأقسام الكتالوج وبيانات تواصل المبيعات.</p>
+            
+            <div class="w-full max-w-xs flex flex-col gap-3">
+                <input type="password" id="admin-password-input" placeholder="أدخل الرقم السري هنا" class="w-full p-3 border rounded-xl text-center text-sm font-semibold tracking-wider focus:outline-none focus:border-brand-dark bg-slate-50">
+                <div id="admin-login-err" class="text-red-600 font-bold text-xs hidden"><i class="fa-solid fa-circle-exclamation ml-1"></i> الرقم السري غير صحيح! حاول مجدداً.</div>
+                <button onclick="checkAdminPassword()" class="w-full bg-brand-dark hover:bg-brand-blue text-white py-3 rounded-xl font-bold text-sm transition-all shadow-md">
+                    تأكيد الدخول الآمن <i class="fa-solid fa-arrow-left mr-1"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- محتوى لوحة التحكم الفعلي (يظهر فقط بعد نجاح تسجيل الدخول) -->
+        <div id="admin-main-content" class="p-6 overflow-y-auto flex-1 flex flex-col gap-8 hidden">
+            <!-- الجزء الخاص بحالة الاتصال السحابي بقواعد البيانات -->
+            <div class="bg-slate-900 text-white p-4 rounded-xl border border-slate-800">
+                <h4 class="font-bold text-xs text-brand-silver mb-2"><i class="fa-solid fa-cloud-arrow-up ml-1.5 text-emerald-400"></i>حالة مزامنة قواعد البيانات</h4>
+                <div id="db-status-badge" class="font-bold text-xs">
+                    <!-- يتم تحديد الحالة سحابية أم محلية ديناميكياً -->
+                </div>
+            </div>
+
+            <!-- الجزء 1: تعديل أرقام وتواصل وشعار وبنر الشركة بوضع روابط Catbox مباشرة -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h4 class="font-extrabold text-brand-dark border-b pb-2 mb-3 text-sm"><i class="fa-solid fa-address-book ml-2 text-brand-silver"></i>1. إدارة بيانات الشركة وهوية الصور (روابط Catbox)</h4>
+                <div class="flex flex-col gap-3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold mb-1">رقم هاتف الشركة:</label>
+                            <input type="text" id="adm-phone" class="w-full p-2 border rounded bg-white text-xs font-bold" value="01015712392">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold mb-1">إيميل الشركة:</label>
+                            <input type="email" id="adm-email" class="w-full p-2 border rounded bg-white text-xs font-bold" value="sales@strongmetal.com">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold mb-1">رابط شعار الشركة الرسمي (Logo URL):</label>
+                        <input type="text" id="adm-logo" class="w-full p-2 border rounded bg-white text-xs font-mono" placeholder="ضع رابط صورة الشعار هنا">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold mb-1">رابط بنر الواجهة الرئيسي (Banner URL):</label>
+                        <input type="text" id="adm-banner" class="w-full p-2 border rounded bg-white text-xs font-mono" placeholder="ضع رابط صورة البنر هنا">
+                    </div>
+                </div>
+                <button onclick="saveContactSettings()" class="w-full bg-brand-dark text-white mt-3 py-2.5 rounded text-xs font-bold hover:bg-brand-blue transition-all">
+                    حفظ وتحديث معلومات الاتصال والهوية البصرية
+                </button>
+            </div>
+
+            <!-- الجزء 2: إضافة قسم جديد للكتالوج -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h4 class="font-extrabold text-brand-dark border-b pb-2 mb-3 text-sm"><i class="fa-solid fa-folder-plus ml-2 text-brand-silver"></i>2. إضافة قسم / تصنيف جديد</h4>
+                <div class="flex gap-2">
+                    <input type="text" id="new-cat-name" placeholder="مثال: لوازم تانكات" class="w-full p-2 border rounded bg-white text-xs font-semibold">
+                    <input type="text" id="new-cat-id" placeholder="ID بالإنجليزية (مثال: tanks)" class="w-full p-2 border rounded bg-white text-xs font-semibold">
+                    <button onclick="addCategory()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded text-xs font-bold flex-shrink-0">إضافة القسم</button>
+                </div>
+            </div>
+
+            <!-- الجزء 3: إضافة منتج جديد للكتالوج المباشر -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h4 class="font-extrabold text-brand-dark border-b pb-2 mb-3 text-sm"><i class="fa-solid fa-box-open ml-2 text-brand-silver"></i>3. إضافة منتج جديد للكتالوج</h4>
+                <div class="flex flex-col gap-3 text-xs">
+                    <div>
+                        <label class="block font-bold mb-1">اسم المنتج الفني:</label>
+                        <input type="text" id="prod-name" placeholder="مثال: فلانشة رقبة لحام 4 بوصة" class="w-full p-2 border rounded bg-white font-semibold">
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1">اختر القسم التابع له:</label>
+                        <select id="prod-cat-select" class="w-full p-2 border rounded bg-white font-semibold">
+                            <!-- التوليد التلقائي للأقسام المتاحة هنا -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1">وصف المنتج ومقاساته الفنية:</label>
+                        <textarea id="prod-desc" rows="2" placeholder="مواصفة ASTM، السمك، الدرجة والضغوط المتاحة..." class="w-full p-2 border rounded bg-white font-semibold"></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-bold mb-1">رابط صورة المنتج من Catbox (مباشر .jpg أو .png):</label>
+                        <input type="text" id="prod-img" placeholder="https://files.catbox.moe/example.jpg" class="w-full p-2 border rounded bg-white font-mono">
+                    </div>
+                    <button onclick="addProduct()" class="w-full bg-brand-dark hover:bg-brand-blue text-white py-2.5 rounded font-bold mt-2">
+                        <i class="fa-solid fa-plus ml-1"></i> إدراج وصيانة المنتج في الكتالوج
+                    </button>
+                </div>
+            </div>
+
+            <!-- الجزء 4: المنتجات المضافة حالياً وإمكانية حذفها -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <h4 class="font-extrabold text-brand-dark border-b pb-2 mb-3 text-sm"><i class="fa-solid fa-list-check ml-2 text-brand-silver"></i>4. التحكم وحذف المنتجات الحالية</h4>
+                <div id="admin-products-list" class="flex flex-col gap-2 max-h-48 overflow-y-auto">
+                    <!-- كروت الحذف السريع -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- منطقة التصدير والطباعة المخفية وتظهر فقط في نافذة الطباعة / الحفظ كـ PDF -->
+    <div id="print-area" class="hidden">
+        <div class="p-8 max-w-4xl mx-auto bg-white text-slate-900 text-right" dir="rtl">
+            <div class="flex justify-between items-center border-b-4 border-brand-dark pb-6 mb-8">
+                <div>
+                    <h1 class="text-3xl font-black text-brand-dark">STRONG METAL</h1>
+                    <p class="text-sm font-bold text-brand-silver">سترونج ميتال لتوريدات الإستانلس ستيل والمحابس</p>
+                    <p class="text-xs text-slate-500 mt-1">هاتف: <span class="dyn-phone"></span> | بريد: <span class="dyn-email"></span></p>
+                </div>
+                <img src="WhatsApp Image 2026-06-01 at 2.18.31 PM (1).jpeg" id="print-logo" alt="Logo" class="h-20 w-20 object-contain">
+            </div>
+            
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-brand-dark border-b pb-2 mb-3">تفاصيل عرض السعر الفني والتقديري</h2>
+                <div class="grid grid-cols-2 gap-4 text-sm bg-slate-50 p-4 rounded-xl mb-4">
+                    <div><strong>تاريخ الطلب:</strong> <span id="print-date"></span></div>
+                    <div><strong>اسم العميل:</strong> <span id="print-client">عميل موقع سترونج ميتال الرسمي</span></div>
+                    <div><strong>هاتف العميل:</strong> <span id="print-phone"></span></div>
+                    <div><strong>الشركة:</strong> <span>طلب تسعير الكتروني مباشر</span></div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <table class="w-full text-sm text-right border-collapse">
+                    <thead>
+                        <tr class="bg-brand-dark text-white font-bold">
+                            <th class="p-3 border">بيان الخامة والصنف المطلوب</th>
+                            <th class="p-3 border text-center">الوزن التقديري الإجمالي</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="p-3 border font-semibold text-slate-800" id="print-material-desc"></td>
+                            <td class="p-3 border text-center font-black text-brand-dark" id="print-material-weight"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-xs text-slate-500 leading-relaxed border-t pt-6">
+                <p class="font-bold text-brand-dark mb-1">ملاحظات هامة ومخازن التوريد:</p>
+                <p>1. هذا العرض استرشادي بناء على المقاييس والمعادلات الهندسية المعتمدة لكثافة الصلب المقاوم للصدأ.</p>
+                <p>2. يرجى التواصل مع إدارة المبيعات لطلب الفاتورة الضريبية وتأكيد ميعاد التسليم والنقل للموقع.</p>
+                <p>3. عروض الأسعار صالحة لمدة محدودة نظراً لتقلبات أسعار الصرف والمعادن العالمية.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal تعديل المنتج -->
+    <div id="edit-modal" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl text-right" dir="rtl">
+            <div class="flex justify-between items-center mb-4">
+                <h4 class="font-extrabold text-brand-dark text-lg"><i class="fa-solid fa-pen-to-square ml-2 text-brand-silver"></i>تعديل بيانات المنتج</h4>
+                <button onclick="closeEditModal()" class="text-slate-400 hover:text-red-500 text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="flex flex-col gap-3 text-xs">
+                <input type="hidden" id="edit-prod-id">
+                <div>
+                    <label class="block font-bold mb-1">اسم المنتج:</label>
+                    <input type="text" id="edit-prod-name" class="w-full p-2 border rounded bg-slate-50 font-semibold text-sm">
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">القسم:</label>
+                    <select id="edit-prod-cat" class="w-full p-2 border rounded bg-slate-50 font-semibold text-sm">
+                    </select>
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">الوصف والمواصفات:</label>
+                    <textarea id="edit-prod-desc" rows="3" class="w-full p-2 border rounded bg-slate-50 font-semibold text-sm"></textarea>
+                </div>
+                <div>
+                    <label class="block font-bold mb-1">رابط صورة المنتج:</label>
+                    <input type="text" id="edit-prod-img" class="w-full p-2 border rounded bg-slate-50 font-mono text-sm">
+                </div>
+            </div>
+            <div class="flex gap-3 mt-5">
+                <button onclick="saveEditProduct()" class="flex-1 bg-brand-dark hover:bg-brand-blue text-white font-bold py-2.5 rounded-xl text-sm transition-all">
+                    <i class="fa-solid fa-floppy-disk ml-1"></i> حفظ التعديلات
+                </button>
+                <button onclick="closeEditModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl text-sm">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة منبثقة تفاعلية بديلة لـ confirm() لتأكيد عملية الحذف بطريقة فخمة -->
+    <div id="confirm-modal" class="fixed inset-0 bg-slate-900/60 z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl text-center transform scale-95 transition-all duration-300">
+            <div class="bg-red-50 text-red-600 p-4 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 text-2xl border border-red-100">
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+            <h4 class="font-extrabold text-brand-dark text-lg mb-2">تأكيد عملية الحذف</h4>
+            <p id="confirm-modal-msg" class="text-xs text-slate-500 mb-6">هل أنت متأكد من رغبتك في حذف هذا العنصر نهائياً من مخازن الكتالوج؟</p>
+            <div class="flex gap-3">
+                <button id="confirm-yes-btn" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-xl text-xs">نعم، تأكيد الحذف</button>
+                <button onclick="closeConfirmModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-2.5 rounded-xl text-xs">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- عنصر الإشعارات المنبثقة التفاعلية بديل الـ alert() التقليدي -->
+    <div id="custom-toast" class="fixed bottom-6 left-6 z-50 bg-slate-900 text-white px-6 py-3.5 rounded-xl shadow-2xl border border-slate-800 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3">
+        <span id="toast-icon" class="text-emerald-400 text-lg"><i class="fa-solid fa-circle-check"></i></span>
+        <span id="toast-msg" class="text-xs font-bold leading-none">تم حفظ البيانات بنجاح!</span>
+    </div>
+
+    <!-- جافا سكريبت إدارة وتأمين لوحة الأدمن والكتالوج الديناميكي بالكامل -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getDatabase, ref, set, onValue, remove, get } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-database.js";
+
+        // البيانات الافتراضية الأولية للموقع في حال لم تكن مسجلة ببيئة السحاب سابقاً
+        const defaultCategories = [
+            { id: 'all', name: 'الكل' },
+            { id: 'pipes', name: 'مواسير وفلانشات' },
+            { id: 'valves', name: 'محابس ولوازم جدول' },
+            { id: 'food', name: 'مستلزمات غذائية وصحية' }
+        ];
+
+        const defaultProducts = [
+            { id: '1', cat: 'pipes', name: 'مواسير سمليس إستانلس ستيل 316L', desc: 'مواسير غير ملحومة مقاومة للأحماض والملوحة طبقاً للمواصفة القياسية الأمريكية ASTM A312.', img: 'WhatsApp Image 2026-06-01 at 2.18.31 PM.jpg' },
+            { id: '2', cat: 'valves', name: 'محبس فراشة / محبس كرة إستانلس ستيل', desc: 'محابس تحكم متطورة مصممة لتحمل الضغط العالي والحرارة المرتفعة لخطوط البخار والمواد الكيميائية.', img: '' },
+            { id: '3', cat: 'food', name: 'وصلات ولوازم صحية (Sanitary Fittings)', desc: 'توصيلات كلامب وجلب ومواسير مصقولة مرآة لمنع تراكم البكتيريا في خطوط إنتاج الألبان والأدوية.', img: '' }
+        ];
+
+        let categories = [];
+        let products = [];
+        let activeCategory = 'all';
+        let calcShape = 'pipe';
+        
+        let isAdminLoggedIn = false;
+        let deleteCallback = null;
+
+        // إدارة بيئة الاتصال الهجين بقواعد البيانات السحابية
+        let db = null;
+        let isCloudMode = false;
+        let appId = 'strong-metal-app';
+
+        // تهيئة التطبيق - Realtime Database مباشرة بدون Auth
+        async function initApp() {
+            try {
+                const firebaseConfig = {
+                    apiKey: "AIzaSyAldH-U7ndtG-iFkrP075K3IRAIYmFJoKM",
+                    authDomain: "test-bcf62.firebaseapp.com",
+                    databaseURL: "https://test-bcf62-default-rtdb.europe-west1.firebasedatabase.app",
+                    projectId: "test-bcf62",
+                    storageBucket: "test-bcf62.firebasestorage.app",
+                    messagingSenderId: "948138345012",
+                    appId: "1:948138345012:web:7331a50db4941e8ae48061",
+                    measurementId: "G-VY48837FYE"
+                };
+
+                const app = initializeApp(firebaseConfig);
+                db = getDatabase(app);
+
+                isCloudMode = true;
+
+                document.getElementById('db-status-badge').innerHTML =
+                    '<span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded text-xs"><i class="fa-solid fa-cloud mr-1"></i> متصل بـ Realtime Database</span>';
+
+                setupFirebaseListeners();
+
+            } catch (error) {
+                console.error("Firebase init failed:", error);
+                fallbackToLocalStorage();
+            }
+        }
+
+        // التهيئة بنظام الذاكرة المحلية الاحتياطي
+        function fallbackToLocalStorage() {
+            isCloudMode = false;
+            document.getElementById('db-status-badge').innerHTML = '<span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded text-xs"><i class="fa-solid fa-laptop mr-1"></i> حفظ وتخزين محلي (على جهازك)</span>';
+            
+            if (!localStorage.getItem('sm_categories')) {
+                localStorage.setItem('sm_categories', JSON.stringify(defaultCategories));
+                localStorage.setItem('sm_products', JSON.stringify(defaultProducts));
+                localStorage.setItem('sm_phone', '01015712392');
+                localStorage.setItem('sm_email', 'sales@strongmetal.com');
+                localStorage.setItem('sm_logo', 'WhatsApp Image 2026-06-01 at 2.18.31 PM (1).jpeg');
+                localStorage.setItem('sm_banner', 'WhatsApp Image 2026-06-01 at 2.18.31 PM.jpg');
+            }
+
+            categories = JSON.parse(localStorage.getItem('sm_categories'));
+            products = JSON.parse(localStorage.getItem('sm_products'));
+            
+            updateContactDOM();
+            renderCategoriesTabs();
+            renderProducts();
+            populateAdminCatSelect();
+            renderAdminProductsList();
+            calculateWeight();
+        }
+
+        // مراقبة وسحب التعديلات سحابياً فوراً - Realtime Database
+        function setupFirebaseListeners() {
+            const basePath = `sm/${appId}`;
+
+            // مزامنة الأقسام
+            onValue(ref(db, `${basePath}/categories`), (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    categories = Object.values(data);
+                } else {
+                    categories = [];
+                }
+                renderCategoriesTabs();
+                populateAdminCatSelect();
+            }, (err) => console.error("Cloud Categories Sync Error:", err));
+
+            // مزامنة المنتجات
+            onValue(ref(db, `${basePath}/products`), (snapshot) => {
+                const data = snapshot.val();
+                if (data) {
+                    products = Object.values(data);
+                } else {
+                    products = [];
+                }
+                renderProducts();
+                renderAdminProductsList();
+            }, (err) => console.error("Cloud Products Sync Error:", err));
+
+            // مزامنة إعدادات الشركة
+            onValue(ref(db, `${basePath}/settings/contact`), (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    updateContactDOM(data.phone, data.email, data.logo, data.banner);
+                }
+            }, (err) => console.error("Cloud Settings Sync Error:", err));
+
+            calculateWeight();
+        }
+
+        // إظهار إشعارات بديلة للـ alert
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('custom-toast');
+            const icon = document.getElementById('toast-icon');
+            const msg = document.getElementById('toast-msg');
+
+            msg.innerText = message;
+            if (isSuccess) {
+                icon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400"></i>';
+            } else {
+                icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-red-500"></i>';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
+        }
+
+        // التحقق من رقم سري الأدمن بتشفير SHA-256
+        async function checkAdminPassword() {
+            const pin = document.getElementById('admin-password-input').value.trim();
+            const err = document.getElementById('admin-login-err');
+
+            // تحويل المدخل لـ SHA-256 hash ومقارنته بالـ hash المخزن
+            const encoder = new TextEncoder();
+            const data = encoder.encode(pin);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+            const STORED_HASH = '3a6b3afdadade43f463a17ba018dfe562354eeae1edd4ac7bc16f126727e49e7';
+
+            if (hashHex === STORED_HASH) {
+                isAdminLoggedIn = true;
+                err.classList.add('hidden');
+                document.getElementById('admin-login-screen').classList.add('hidden');
+                document.getElementById('admin-main-content').classList.remove('hidden');
+                showToast('تم التحقق من الهوية وصلاحيات المدير بنجاح.');
+            } else {
+                err.classList.remove('hidden');
+                showToast('خطأ في الرقم السري المكتوب!', false);
+            }
+        }
+
+        // إظهار وإخفاء لوحة الأدمن
+        function toggleAdminPanel() {
+            const panel = document.getElementById('admin-panel');
+            panel.classList.toggle('translate-x-full');
+            
+            if (panel.classList.contains('translate-x-full')) {
+                isAdminLoggedIn = false;
+                document.getElementById('admin-password-input').value = '';
+                document.getElementById('admin-login-screen').classList.remove('hidden');
+                document.getElementById('admin-main-content').classList.add('hidden');
+                document.getElementById('admin-login-err').classList.add('hidden');
+            }
+        }
+
+        // تحديث أرقام مبيعات وشعارات الشركة بالكامل في كامل الموقع
+        function updateContactDOM(phone, email, logo, banner) {
+            phone  = phone  || localStorage.getItem('sm_phone')  || '01015712392';
+            email  = email  || localStorage.getItem('sm_email')  || 'sales@strongmetal.com';
+            logo   = logo   || localStorage.getItem('sm_logo')   || '';
+            banner = banner || localStorage.getItem('sm_banner') || '';
+            // احفظ في localStorage كـ cache محلي
+            localStorage.setItem('sm_phone', phone);
+            localStorage.setItem('sm_email', email);
+            localStorage.setItem('sm_logo', logo);
+            localStorage.setItem('sm_banner', banner);
+
+            document.querySelectorAll('.dyn-phone').forEach(el => el.innerText = phone);
+            document.querySelectorAll('.dyn-email').forEach(el => el.innerText = email);
+            document.getElementById('dyn-whatsapp-btn').href = `https://wa.me/20${parseInt(phone)}`;
+            
+            // تحديث الشعار والبنر — لو فاضي استخدم placeholder
+            const defaultLogo = 'https://placehold.co/150x150/0B1E36/FFFFFF?text=SM';
+            const defaultBanner = 'https://placehold.co/800x400/0B1E36/FFFFFF?text=Strong+Metal';
+            const logoSrc   = logo   || defaultLogo;
+            const bannerSrc = banner || defaultBanner;
+            document.getElementById('main-logo-img').src = logoSrc;
+            document.getElementById('print-logo').src = logoSrc;
+            document.getElementById('hero-side-img').src = bannerSrc;
+            document.getElementById('about-side-img').src = bannerSrc;
+            document.getElementById('hero-bg-div').style.backgroundImage = `url('${bannerSrc}')`;
+            
+            // تحديث قيم حقول الإدخال في الأدمن
+            document.getElementById('adm-phone').value = phone;
+            document.getElementById('adm-email').value = email;
+            document.getElementById('adm-logo').value = logo;
+            document.getElementById('adm-banner').value = banner;
+        }
+
+        // حفظ وتحديث بيانات مبيعات وتواصل وشعارات الشركة
+        async function saveContactSettings() {
+            const phone = document.getElementById('adm-phone').value.trim();
+            const email = document.getElementById('adm-email').value.trim();
+            const logo = document.getElementById('adm-logo').value.trim();
+            const banner = document.getElementById('adm-banner').value.trim();
+
+            if (!phone || !email) {
+                showToast('برجاء ملء رقم الهاتف والإيميل!', false);
+                return;
+            }
+
+            // عدّل الـ DOM فوراً للمستخدم
+            updateContactDOM(phone, email, logo, banner);
+
+            if (isCloudMode) {
+                try {
+                    await set(ref(db, `sm/${appId}/settings/contact`), { phone, email, logo, banner });
+                    showToast('تم الحفظ في Firebase بنجاح!');
+                } catch(e) {
+                    console.error("Cloud save error:", e);
+                    showToast('خطأ في الحفظ السحابي: ' + (e.message || 'خطأ في الاتصال'), false);
+                }
+            } else {
+                showToast('تم تحديث وحفظ بيانات التواصل بنجاح!');
+            }
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // دالة تفعيل وتبديل حالة القائمة على شاشات الهواتف
+        function toggleMobileMenuOpen() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        }
+
+        // توليد أزرار تصفح تصنيفات وأقسام الكتالوج بالواجهة
+        function renderCategoriesTabs() {
+            const container = document.getElementById('categories-tabs-container');
+            container.innerHTML = '';
+            categories.forEach(cat => {
+                const isActive = cat.id === activeCategory;
+                const btn = document.createElement('button');
+                btn.className = `px-6 py-3 rounded-lg font-bold text-sm transition-all ${isActive ? 'bg-brand-dark text-white shadow-md' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'}`;
+                btn.innerText = cat.name;
+                btn.onclick = () => {
+                    activeCategory = cat.id;
+                    renderCategoriesTabs();
+                    renderProducts();
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        // توليد المنتجات وعرضها طبقاً للفلاتر والبحث في الكتالوج
+        function renderProducts() {
+            const container = document.getElementById('products-grid-container');
+            container.innerHTML = '';
+            const searchQuery = document.getElementById('product-search').value.toLowerCase().trim();
+
+            const filtered = products.filter(p => {
+                const matchCat = (activeCategory === 'all' || p.cat === activeCategory);
+                const matchSearch = p.name.toLowerCase().includes(searchQuery) || p.desc.toLowerCase().includes(searchQuery);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center py-10 font-bold text-slate-400">لا توجد منتجات مطابقة حالياً في هذا القسم.</div>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                const catObj = categories.find(c => c.id === p.cat) || { name: 'عام' };
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 rounded-2xl border border-slate-200 p-5 transition-all duration-300 hover:shadow-xl hover:-translate-y-1";
+                
+                const imageSrc = p.img ? p.img : 'https://placehold.co/400x300/0B1E36/FFFFFF?text=Strong+Metal';
+
+                card.innerHTML = `
+                    <div class="relative rounded-xl overflow-hidden mb-4 bg-white h-48 border border-slate-100 flex items-center justify-center">
+                        <img src="${imageSrc}" alt="${p.name}" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-xs font-bold text-brand-dark bg-brand-lightSilver px-3 py-1 rounded-full mb-2 inline-block">${catObj.name}</span>
+                    <h3 class="text-lg font-bold text-brand-dark mb-1">${p.name}</h3>
+                    <p class="text-xs text-slate-500 mb-4 line-clamp-2">${p.desc}</p>
+                    <button onclick="requestDirectQuote('${p.name}')" class="w-full bg-brand-dark hover:bg-brand-blue text-white py-2.5 rounded-xl font-bold text-xs transition-colors">
+                        طلب مواصفات وأسعار الصنف فورا
+                    </button>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function requestDirectQuote(productName) {
+            document.getElementById('form-message').value = `مرحباً سترونج ميتال، أود الاستفسار وطلب عرض أسعار معتمد بخصوص منتج: (${productName}). يرجى التواصل لإرسال المقاسات المتاحة.`;
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // تغذية خيارات أقسام المنتجات بلوحة الإدارة
+        function populateAdminCatSelect() {
+            const select = document.getElementById('prod-cat-select');
+            if(!select) return;
+            select.innerHTML = '';
+            categories.filter(c => c.id !== 'all').forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat.id;
+                opt.innerText = cat.name;
+                select.appendChild(opt);
+            });
+        }
+
+        // تصدير عرض أسعار رسمي للطباعة بصيغة PDF
+        function generatePrintableQuote() {
+            const weight = document.getElementById('calc-result').innerText;
+            const densityName = document.getElementById('steel-density').options[document.getElementById('steel-density').selectedIndex].text;
+            
+            let descStr = '';
+            if (calcShape === 'pipe') {
+                descStr = `مواسير دائرية إستانلس ستيل (${densityName}) بقُطر خارجي ${document.getElementById('pipe-od').value} مم وسمك ${document.getElementById('pipe-wall').value} مم وطول ${document.getElementById('pipe-len').value} متر.`;
+            } else {
+                descStr = `ألواح مسطحة إستانلس ستيل (${densityName}) بسمك ${document.getElementById('sheet-thick').value} مم وأبعاد ${document.getElementById('sheet-width').value}م × ${document.getElementById('sheet-len').value}م.`;
+            }
+
+            // ملء بيانات الطباعة
+            document.getElementById('print-date').innerText = new Date().toLocaleDateString('ar-EG');
+            document.getElementById('print-client').innerText = document.getElementById('client-name').value.trim() || 'عميل موقع سترونج ميتال الرسمي';
+            document.getElementById('print-phone').innerText = document.getElementById('client-phone').value.trim() || 'غير محدد';
+            document.getElementById('print-material-desc').innerText = descStr;
+            document.getElementById('print-material-weight').innerText = `${weight} كجم`;
+
+            // إطلاق أمر الطباعة المدمج بالمتصفح
+            window.print();
+        }
+
+        // إضافة قسم جديد للكتالوج
+        async function addCategory() {
+            const name = document.getElementById('new-cat-name').value.trim();
+            const id = document.getElementById('new-cat-id').value.trim().toLowerCase();
+
+            if (!name || !id) { showToast('برجاء ملء خانات القسم الجديد بالكامل!', false); return; }
+            if (categories.some(c => c.id === id)) { showToast('هذا المعرف (ID) مستخدم بالفعل لقسم آخر!', false); return; }
+
+            if (isCloudMode) {
+                try {
+                    await set(ref(db, `sm/${appId}/categories/${id}`), { id, name });
+                } catch(e) {
+                    console.error("Cloud cat save error:", e);
+                    categories.push({ id, name });
+                    localStorage.setItem('sm_categories', JSON.stringify(categories));
+                    renderCategoriesTabs();
+                    populateAdminCatSelect();
+                }
+            } else {
+                categories.push({ id, name });
+                localStorage.setItem('sm_categories', JSON.stringify(categories));
+                renderCategoriesTabs();
+                populateAdminCatSelect();
+            }
+            
+            document.getElementById('new-cat-name').value = '';
+            document.getElementById('new-cat-id').value = '';
+            showToast(`تمت إضافة القسم الجديد (${name}) بنجاح!`);
+        }
+
+        // إضافة منتج جديد للكتالوج المباشر
+        async function addProduct() {
+            const name = document.getElementById('prod-name').value.trim();
+            const cat = document.getElementById('prod-cat-select').value;
+            const desc = document.getElementById('prod-desc').value.trim();
+            const img = document.getElementById('prod-img').value.trim();
+
+            if (!name || !desc) { showToast('برجاء ملء اسم المنتج ووصفه الفني!', false); return; }
+
+            const newId = String(Date.now());
+            const newProd = {
+                id: newId,
+                cat,
+                name,
+                desc,
+                img
+            };
+
+            if (isCloudMode) {
+                try {
+                    await set(ref(db, `sm/${appId}/products/${newId}`), newProd);
+                } catch(e) {
+                    console.error("Cloud product save error:", e);
+                    products.push(newProd);
+                    localStorage.setItem('sm_products', JSON.stringify(products));
+                    renderProducts();
+                    renderAdminProductsList();
+                    showToast('خطأ سحابي — تم الحفظ محلياً: ' + (e.message || 'خطأ'), false);
+                    return;
+                }
+            } else {
+                products.push(newProd);
+                localStorage.setItem('sm_products', JSON.stringify(products));
+                renderProducts();
+                renderAdminProductsList();
+            }
+
+            document.getElementById('prod-name').value = '';
+            document.getElementById('prod-desc').value = '';
+            document.getElementById('prod-img').value = '';
+
+            showToast('تم إدراج الصنف الجديد بنجاح في الكتالوج العام للموقع!');
+        }
+
+        // عرض قائمة المنتجات مع زر الحذف بلوحة الإدارة
+        function renderAdminProductsList() {
+            const list = document.getElementById('admin-products-list');
+            if(!list) return;
+            list.innerHTML = '';
+            products.forEach(p => {
+                const row = document.createElement('div');
+                row.className = "flex justify-between items-center bg-white p-2 border rounded text-xs gap-2 font-semibold";
+                row.innerHTML = `
+                    <span class="truncate text-brand-dark flex-1">${p.name}</span>
+                    <div class="flex gap-1 flex-shrink-0">
+                        <button onclick="openEditModal('${p.id}')" class="text-blue-600 hover:text-blue-800 bg-blue-50 p-1 rounded px-2">
+                            <i class="fa-solid fa-pen"></i> تعديل
+                        </button>
+                        <button onclick="requestDeleteProduct('${p.id}')" class="text-red-500 hover:text-red-700 bg-red-50 p-1 rounded px-2">
+                            <i class="fa-solid fa-trash"></i> حذف
+                        </button>
+                    </div>
+                `;
+                list.appendChild(row);
+            });
+        }
+
+        // فتح modal التعديل وتعبئته ببيانات المنتج
+        function openEditModal(id) {
+            const p = products.find(p => p.id === id);
+            if (!p) return;
+
+            document.getElementById('edit-prod-id').value = p.id;
+            document.getElementById('edit-prod-name').value = p.name;
+            document.getElementById('edit-prod-desc').value = p.desc;
+            document.getElementById('edit-prod-img').value = p.img || '';
+
+            // ملء قائمة الأقسام
+            const catSelect = document.getElementById('edit-prod-cat');
+            catSelect.innerHTML = '';
+            categories.filter(c => c.id !== 'all').forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat.id;
+                opt.innerText = cat.name;
+                if (cat.id === p.cat) opt.selected = true;
+                catSelect.appendChild(opt);
+            });
+
+            document.getElementById('edit-modal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').classList.add('hidden');
+        }
+
+        // حفظ التعديلات في Firestore أو localStorage
+        async function saveEditProduct() {
+            const id = document.getElementById('edit-prod-id').value;
+            const name = document.getElementById('edit-prod-name').value.trim();
+            const cat = document.getElementById('edit-prod-cat').value;
+            const desc = document.getElementById('edit-prod-desc').value.trim();
+            const img = document.getElementById('edit-prod-img').value.trim();
+
+            if (!name || !desc) { showToast('برجاء ملء الاسم والوصف!', false); return; }
+
+            const updatedProd = { id, cat, name, desc, img };
+
+            if (isCloudMode) {
+                try {
+                    await set(ref(db, `sm/${appId}/products/${id}`), updatedProd);
+                    showToast('تم تعديل المنتج وحفظه في السحاب بنجاح!');
+                } catch(e) {
+                    console.error("Cloud edit error:", e);
+                    showToast('خطأ في الحفظ السحابي: ' + (e.message || 'خطأ في الاتصال'), false);
+                    return;
+                }
+            } else {
+                const idx = products.findIndex(p => p.id === id);
+                if (idx !== -1) products[idx] = updatedProd;
+                localStorage.setItem('sm_products', JSON.stringify(products));
+                renderProducts();
+                renderAdminProductsList();
+                showToast('تم تعديل المنتج بنجاح!');
+            }
+
+            closeEditModal();
+        }
+
+        // تفعيل وحذف صنف من الكتالوج
+        function requestDeleteProduct(id) {
+            const modal = document.getElementById('confirm-modal');
+            modal.classList.remove('hidden');
+            
+            deleteCallback = async function() {
+                if (isCloudMode) {
+                    try {
+                        await remove(ref(db, `sm/${appId}/products/${id}`));
+                    } catch(e) {
+                        console.error("Cloud delete error:", e);
+                        products = products.filter(p => p.id !== id);
+                        localStorage.setItem('sm_products', JSON.stringify(products));
+                        renderProducts();
+                        renderAdminProductsList();
+                    }
+                } else {
+                    products = products.filter(p => p.id !== id);
+                    localStorage.setItem('sm_products', JSON.stringify(products));
+                    renderProducts();
+                    renderAdminProductsList();
+                }
+                showToast('تم حذف الصنف بنجاح من قائمة المخازن.');
+                closeConfirmModal();
+            };
+
+            document.getElementById('confirm-yes-btn').onclick = deleteCallback;
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirm-modal').classList.add('hidden');
+            deleteCallback = null;
+        }
+
+        // أداة حساب أوزان الإستانلس ستيل
+        function setCalcShape(shape) {
+            calcShape = shape;
+            const pipeBtn = document.getElementById('shape-pipe-btn');
+            const sheetBtn = document.getElementById('shape-sheet-btn');
+            const pipeInputs = document.getElementById('pipe-inputs');
+            const sheetInputs = document.getElementById('sheet-inputs');
+
+            if (shape === 'pipe') {
+                pipeBtn.className = "py-3 px-4 rounded-xl border-2 border-brand-silver bg-brand-dark text-white font-bold flex items-center justify-center gap-2";
+                sheetBtn.className = "py-3 px-4 rounded-xl border border-slate-700 bg-brand-dark/50 text-slate-400 font-bold flex items-center justify-center gap-2";
+                pipeInputs.classList.remove('hidden');
+                sheetInputs.classList.add('hidden');
+            } else {
+                sheetBtn.className = "py-3 px-4 rounded-xl border-2 border-brand-silver bg-brand-dark text-white font-bold flex items-center justify-center gap-2";
+                pipeBtn.className = "py-3 px-4 rounded-xl border border-slate-700 bg-brand-dark/50 text-slate-400 font-bold flex items-center justify-center gap-2";
+                sheetInputs.classList.remove('hidden');
+                pipeInputs.classList.add('hidden');
+            }
+            calculateWeight();
+        }
+
+        function calculateWeight() {
+            const density = parseFloat(document.getElementById('steel-density').value);
+            let result = 0;
+
+            if (calcShape === 'pipe') {
+                const od = parseFloat(document.getElementById('pipe-od').value) || 0;
+                const wall = parseFloat(document.getElementById('pipe-wall').value) || 0;
+                const len = parseFloat(document.getElementById('pipe-len').value) || 0;
+                if (od > 0 && wall > 0 && len > 0) {
+                    const factor = 0.02491 * (density / 7.93);
+                    result = (od - wall) * wall * factor * len;
+                }
+            } else {
+                const thick = parseFloat(document.getElementById('sheet-thick').value) || 0;
+                const width = parseFloat(document.getElementById('sheet-width').value) || 0;
+                const len = parseFloat(document.getElementById('sheet-len').value) || 0;
+                if (thick > 0 && width > 0 && len > 0) {
+                    result = thick * width * len * density;
+                }
+            }
+            document.getElementById('calc-result').innerText = result.toFixed(2);
+        }
+
+        function copyWeightToForm() {
+            const weight = document.getElementById('calc-result').innerText;
+            const densityName = document.getElementById('steel-density').options[document.getElementById('steel-density').selectedIndex].text;
+            
+            let descStr = '';
+            if (calcShape === 'pipe') {
+                descStr = `مواصفات مواسير دائرية (${densityName}) بقُطر خارجي ${document.getElementById('pipe-od').value} مم وسمك ${document.getElementById('pipe-wall').value} مم وطول ${document.getElementById('pipe-len').value} متر. الوزن التقريبي الإجمالي: ${weight} كجم.`;
+            } else {
+                descStr = `مواصفات ألواح مسطحة (${densityName}) بسمك ${document.getElementById('sheet-thick').value} مم وأبعاد ${document.getElementById('sheet-width').value}م × ${document.getElementById('sheet-len').value}م. الوزن التقريبي الإجمالي: ${weight} كجم.`;
+            }
+            
+            document.getElementById('form-message').value = `مرحباً سترونج ميتال، قمنا بحساب الأوزان عبر موقعكم ونطلب تسعير التوريد للآتي:\n${descStr}\nيرجى موافاتنا بالأسعار الحالية وتكلفة النقل والميعاد المتوقع للتسليم.`;
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            showToast('تم نسخ وإدراج تفاصيل الحساب في نموذج إرسال طلب عرض الأسعار بالأسفل!');
+        }
+
+        // تصدير دوال الجافاسكريبت لكي تصبح متاحة للـ HTML
+        window.initApp = initApp;
+        window.toggleAdminPanel = toggleAdminPanel;
+        window.checkAdminPassword = checkAdminPassword;
+        window.saveContactSettings = saveContactSettings;
+        window.addCategory = addCategory;
+        window.addProduct = addProduct;
+        window.requestDeleteProduct = requestDeleteProduct;
+        window.openEditModal = openEditModal;
+        window.closeEditModal = closeEditModal;
+        window.saveEditProduct = saveEditProduct;
+        window.closeConfirmModal = closeConfirmModal;
+        window.setCalcShape = setCalcShape;
+        window.calculateWeight = calculateWeight;
+        window.copyWeightToForm = copyWeightToForm;
+        window.renderProducts = renderProducts;
+        window.toggleMobileMenu = toggleMobileMenu;
+        window.toggleMobileMenuOpen = toggleMobileMenuOpen;
+        window.requestDirectQuote = requestDirectQuote;
+    </script>
+</body>
+</html>
